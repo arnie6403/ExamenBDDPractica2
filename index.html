@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tienda Oracle DB - Demo</title>
+    <title>Tienda Oracle DB - Demo Interactiva</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body class="bg-light">
@@ -11,10 +11,10 @@
     <!-- Navegación -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
         <div class="container">
-            <a class="navbar-brand" href="#">Mi Tienda Oracle</a>
+            <a class="navbar-brand" href="#">Mi Tienda Oracle (Demo Interactiva)</a>
             <div class="navbar-nav ms-auto">
                 <a class="nav-link" href="#catalogo">Catálogo</a>
-                <a class="nav-link active" href="#dashboard">Dashboard Admin</a>
+                <a class="nav-link" href="#dashboard">Dashboard Admin</a>
             </div>
         </div>
     </nav>
@@ -29,11 +29,11 @@
                     <div class="card h-100 shadow-sm">
                         <div class="card-body d-flex flex-column">
                             <h5 class="card-title">Laptop Pro 15</h5>
-                            <p class="card-text text-muted mb-2">Stock disponible: 9</p>
-                            <h4 class="card-subtitle mb-3 text-primary">$1200.00</h4>
+                            <p class="card-text text-muted mb-2">Stock disponible: <span id="stock-1">9</span></p>
+                            <h4 class="card-subtitle mb-3 text-primary">$<span id="precio-1">1200.00</span></h4>
                             <div class="input-group mt-auto">
-                                <input type="number" value="1" min="1" max="9" class="form-control">
-                                <button class="btn btn-success" type="button">Comprar</button>
+                                <input type="number" id="qty-1" value="1" min="1" max="9" class="form-control">
+                                <button class="btn btn-success" type="button" onclick="comprar('Laptop Pro 15', 1200.00, 1)">Comprar</button>
                             </div>
                         </div>
                     </div>
@@ -44,11 +44,11 @@
                     <div class="card h-100 shadow-sm">
                         <div class="card-body d-flex flex-column">
                             <h5 class="card-title">Mouse Inalámbrico</h5>
-                            <p class="card-text text-muted mb-2">Stock disponible: 49</p>
-                            <h4 class="card-subtitle mb-3 text-primary">$25.50</h4>
+                            <p class="card-text text-muted mb-2">Stock disponible: <span id="stock-2">49</span></p>
+                            <h4 class="card-subtitle mb-3 text-primary">$<span id="precio-2">25.50</span></h4>
                             <div class="input-group mt-auto">
-                                <input type="number" value="1" min="1" max="49" class="form-control">
-                                <button class="btn btn-success" type="button">Comprar</button>
+                                <input type="number" id="qty-2" value="1" min="1" max="49" class="form-control">
+                                <button class="btn btn-success" type="button" onclick="comprar('Mouse Inalámbrico', 25.50, 2)">Comprar</button>
                             </div>
                         </div>
                     </div>
@@ -59,11 +59,11 @@
                     <div class="card h-100 shadow-sm">
                         <div class="card-body d-flex flex-column">
                             <h5 class="card-title">Teclado Mecánico</h5>
-                            <p class="card-text text-muted mb-2">Stock disponible: 30</p>
-                            <h4 class="card-subtitle mb-3 text-primary">$85.00</h4>
+                            <p class="card-text text-muted mb-2">Stock disponible: <span id="stock-3">30</span></p>
+                            <h4 class="card-subtitle mb-3 text-primary">$<span id="precio-3">85.00</span></h4>
                             <div class="input-group mt-auto">
-                                <input type="number" value="1" min="1" max="30" class="form-control">
-                                <button class="btn btn-success" type="button">Comprar</button>
+                                <input type="number" id="qty-3" value="1" min="1" max="30" class="form-control">
+                                <button class="btn btn-success" type="button" onclick="comprar('Teclado Mecánico', 85.00, 3)">Comprar</button>
                             </div>
                         </div>
                     </div>
@@ -80,13 +80,13 @@
                 <div class="col-md-4 mb-3">
                     <div class="card bg-primary text-white p-3 shadow-sm">
                         <h5>Ingresos Totales</h5>
-                        <h3>$1225.50</h3>
+                        <h3 id="total-ingresos">$1225.50</h3>
                     </div>
                 </div>
                 <div class="col-md-4 mb-3">
                     <div class="card bg-success text-white p-3 shadow-sm">
                         <h5>Unidades Vendidas</h5>
-                        <h3>2</h3>
+                        <h3 id="total-unidades">2</h3>
                     </div>
                 </div>
                 <div class="col-md-4 mb-3">
@@ -110,20 +110,20 @@
                                 <th>Fecha</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody id="tabla-transacciones">
                             <tr>
                                 <td>2</td>
                                 <td>Mouse Inalámbrico</td>
                                 <td>1</td>
                                 <td>$25.50</td>
-                                <td>2026-11-05 15:22:20.037000</td>
+                                <td>2026-11-05 15:22:20</td>
                             </tr>
                             <tr>
                                 <td>1</td>
                                 <td>Laptop Pro 15</td>
                                 <td>1</td>
                                 <td>$1200.00</td>
-                                <td>2026-11-05 15:15:58.769000</td>
+                                <td>2026-11-05 15:15:58</td>
                             </tr>
                         </tbody>
                     </table>
@@ -132,6 +132,44 @@
         </section>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
+    <!-- Script JavaScript para simular la interactividad -->
+    <script>
+        let ingresosTotales = 1225.50;
+        let unidadesVendidas = 2;
+        let idVentaContador = 2;
+
+        const stocks = {
+            1: 9,
+            2: 49,
+            3: 30
+        };
+
+        function comprar(nombreProducto, precioUnitario, productoId) {
+            const inputQty = document.getElementById(`qty-${productoId}`);
+            const cantidad = parseInt(inputQty.value);
+
+            if (isNaN(cantidad) || cantidad <= 0) {
+                alert("Por favor ingresa una cantidad válida.");
+                return;
+            }
+
+            if (cantidad > stocks[productoId]) {
+                alert("No hay suficiente stock disponible para esta cantidad.");
+                return;
+            }
+
+            // Actualizar stock
+            stocks[productoId] -= cantidad;
+            document.getElementById(`stock-${productoId}`).innerText = stocks[productoId]; inputQty.max = stocks[productoId];  // Calcular total de la venta const totalVenta = cantidad * precioUnitario; ingresosTotales += totalVenta; unidadesVendidas += cantidad; idVentaContador++;  // Actualizar métricas del Dashboard document.getElementById("total-ingresos").innerText = `$${ingresosTotales.toFixed(2)}`;
+            document.getElementById("total-unidades").innerText = unidadesVendidas;
+
+            // Obtener fecha y hora actual formateada
+            const ahora = new Date();
+            const fechaStr = ahora.toISOString().slice(0, 19).replace('T', ' ');
+
+            // Agregar nueva fila a la tabla de transacciones
+            const tabla = document.getElementById("tabla-transacciones");
+            const nuevaFila = document.createElement("tr");
+            nuevaFila.innerHTML = `
+                <td>${idVentaContador}</td>
+                <td>${
